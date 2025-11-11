@@ -1852,7 +1852,7 @@ progress {
     --bs-gutter-y: 3rem;
   }
 }
-.table {
+.table, .table table, .table table table {
   --bs-table-color-type: initial;
   --bs-table-bg-type: initial;
   --bs-table-color-state: initial;
@@ -1872,17 +1872,17 @@ progress {
   vertical-align: top;
   border-color: var(--bs-table-border-color);
 }
-.table > :not(caption) > * > * {
+.table > :not(caption) > * > *, .table table > :not(caption) > * > *, .table table table > :not(caption) > * > * {
   padding: 0.5rem 0.5rem;
   color: var(--bs-table-color-state, var(--bs-table-color-type, var(--bs-table-color)));
   background-color: var(--bs-table-bg);
   border-bottom-width: var(--bs-border-width);
   box-shadow: inset 0 0 0 9999px var(--bs-table-bg-state, var(--bs-table-bg-type, var(--bs-table-accent-bg)));
 }
-.table > tbody {
+.table > tbody, .table table > tbody, .table table table > tbody {
   vertical-align: inherit;
 }
-.table > thead {
+.table > thead, .table table > thead, .table table table > thead {
   vertical-align: bottom;
 }
 
@@ -1898,10 +1898,10 @@ progress {
   padding: 0.25rem 0.25rem;
 }
 
-.table-bordered > :not(caption) > * {
+.table-bordered > :not(caption) > *, .table table > :not(caption) > *, .table table table > :not(caption) > *, .table table table table > :not(caption) > * {
   border-width: var(--bs-border-width) 0;
 }
-.table-bordered > :not(caption) > * > * {
+.table-bordered > :not(caption) > * > *, .table table > :not(caption) > * > *, .table table table > :not(caption) > * > *, .table table table table > :not(caption) > * > * {
   border-width: 0 var(--bs-border-width);
 }
 
@@ -1927,7 +1927,7 @@ progress {
   --bs-table-bg-state: var(--bs-table-active-bg);
 }
 
-.table-hover > tbody > tr:hover > * {
+.table-hover > tbody > tr:hover > *, .table table > tbody > tr:hover > *, .table table table > tbody > tr:hover > *, .table table table table > tbody > tr:hover > * {
   --bs-table-color-state: var(--bs-table-hover-color);
   --bs-table-bg-state: var(--bs-table-hover-bg);
 }
@@ -2109,7 +2109,7 @@ progress {
   color: var(--bs-secondary-color);
 }
 
-.form-control {
+.form-control, .table .form-control {
   display: block;
   width: 100%;
   padding: 0.375rem 0.75rem;
@@ -2125,7 +2125,7 @@ progress {
   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
 @media (prefers-reduced-motion: reduce) {
-  .form-control {
+  .form-control, .table .form-control {
     transition: none;
   }
 }
@@ -2142,16 +2142,16 @@ progress {
   outline: 0;
   box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
 }
-.form-control::-webkit-date-and-time-value {
+.form-control::-webkit-date-and-time-value, .table .form-control::-webkit-date-and-time-value {
   min-width: 85px;
   height: 1.5em;
   margin: 0;
 }
-.form-control::-webkit-datetime-edit {
+.form-control::-webkit-datetime-edit, .table .form-control::-webkit-datetime-edit {
   display: block;
   padding: 0;
 }
-.form-control::placeholder {
+.form-control::placeholder, .table .form-control::placeholder {
   color: var(--bs-secondary-color);
   opacity: 1;
 }
@@ -2159,7 +2159,7 @@ progress {
   background-color: var(--bs-secondary-bg);
   opacity: 1;
 }
-.form-control::file-selector-button {
+.form-control::file-selector-button, .table .form-control::file-selector-button {
   padding: 0.375rem 0.75rem;
   margin: -0.375rem -0.75rem;
   margin-inline-end: 0.75rem;
@@ -2174,7 +2174,7 @@ progress {
   transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
 @media (prefers-reduced-motion: reduce) {
-  .form-control::file-selector-button {
+  .form-control::file-selector-button, .table .form-control::file-selector-button {
     transition: none;
   }
 }
@@ -2225,7 +2225,7 @@ progress {
   margin-inline-end: 1rem;
 }
 
-textarea.form-control {
+textarea.form-control, .table textarea.form-control {
   min-height: calc(1.5em + 0.75rem + calc(var(--bs-border-width) * 2));
 }
 textarea.form-control-sm {
@@ -2439,7 +2439,7 @@ textarea.form-control-lg {
   clip: rect(0, 0, 0, 0);
   pointer-events: none;
 }
-.btn-check[disabled] + .btn, .btn-check:disabled + .btn {
+.btn-check[disabled] + .btn, .table .btn-check[disabled] + .table-button, .btn-check:disabled + .btn, .table .btn-check:disabled + .table-button {
   pointer-events: none;
   filter: none;
   opacity: 0.65;
@@ -2638,11 +2638,11 @@ textarea.form-control-lg {
 .input-group > .form-floating:focus-within {
   z-index: 5;
 }
-.input-group .btn {
+.input-group .btn, .input-group .table .table-button, .table .input-group .table-button {
   position: relative;
   z-index: 2;
 }
-.input-group .btn:focus {
+.input-group .btn:focus, .input-group .table .table-button:focus, .table .input-group .table-button:focus {
   z-index: 5;
 }
 
@@ -2664,7 +2664,8 @@ textarea.form-control-lg {
 .input-group-lg > .form-control,
 .input-group-lg > .form-select,
 .input-group-lg > .input-group-text,
-.input-group-lg > .btn {
+.input-group-lg > .btn,
+.table .input-group-lg > .table-button {
   padding: 0.5rem 1rem;
   font-size: 1.25rem;
   border-radius: var(--bs-border-radius-lg);
@@ -2673,7 +2674,8 @@ textarea.form-control-lg {
 .input-group-sm > .form-control,
 .input-group-sm > .form-select,
 .input-group-sm > .input-group-text,
-.input-group-sm > .btn {
+.input-group-sm > .btn,
+.table .input-group-sm > .table-button {
   padding: 0.25rem 0.5rem;
   font-size: 0.875rem;
   border-radius: var(--bs-border-radius-sm);
@@ -2889,7 +2891,7 @@ textarea.form-control-lg {
   z-index: 4;
 }
 
-.btn {
+.btn, .table .table-button {
   --bs-btn-padding-x: 0.75rem;
   --bs-btn-padding-y: 0.375rem;
   --bs-btn-font-family: ;
@@ -2923,44 +2925,44 @@ textarea.form-control-lg {
   transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
 @media (prefers-reduced-motion: reduce) {
-  .btn {
+  .btn, .table .table-button {
     transition: none;
   }
 }
-.btn:hover {
+.btn:hover, .table .table-button:hover {
   color: var(--bs-btn-hover-color);
   background-color: var(--bs-btn-hover-bg);
   border-color: var(--bs-btn-hover-border-color);
 }
-.btn-check + .btn:hover {
+.btn-check + .btn:hover, .table .btn-check + .table-button:hover {
   color: var(--bs-btn-color);
   background-color: var(--bs-btn-bg);
   border-color: var(--bs-btn-border-color);
 }
-.btn:focus-visible {
+.btn:focus-visible, .table .table-button:focus-visible {
   color: var(--bs-btn-hover-color);
   background-color: var(--bs-btn-hover-bg);
   border-color: var(--bs-btn-hover-border-color);
   outline: 0;
   box-shadow: var(--bs-btn-focus-box-shadow);
 }
-.btn-check:focus-visible + .btn {
+.btn-check:focus-visible + .btn, .table .btn-check:focus-visible + .table-button {
   border-color: var(--bs-btn-hover-border-color);
   outline: 0;
   box-shadow: var(--bs-btn-focus-box-shadow);
 }
-.btn-check:checked + .btn, :not(.btn-check) + .btn:active, .btn:first-child:active, .btn.active, .btn.show {
+.btn-check:checked + .btn, .table .btn-check:checked + .table-button, :not(.btn-check) + .btn:active, .table :not(.btn-check) + .table-button:active, .btn:first-child:active, .table .table-button:first-child:active, .btn.active, .table .active.table-button, .btn.show, .table .show.table-button {
   color: var(--bs-btn-active-color);
   background-color: var(--bs-btn-active-bg);
   border-color: var(--bs-btn-active-border-color);
 }
-.btn-check:checked + .btn:focus-visible, :not(.btn-check) + .btn:active:focus-visible, .btn:first-child:active:focus-visible, .btn.active:focus-visible, .btn.show:focus-visible {
+.btn-check:checked + .btn:focus-visible, .table .btn-check:checked + .table-button:focus-visible, :not(.btn-check) + .btn:active:focus-visible, .table :not(.btn-check) + .table-button:active:focus-visible, .btn:first-child:active:focus-visible, .table .table-button:first-child:active:focus-visible, .btn.active:focus-visible, .table .active.table-button:focus-visible, .btn.show:focus-visible, .table .show.table-button:focus-visible {
   box-shadow: var(--bs-btn-focus-box-shadow);
 }
-.btn-check:checked:focus-visible + .btn {
+.btn-check:checked:focus-visible + .btn, .table .btn-check:checked:focus-visible + .table-button {
   box-shadow: var(--bs-btn-focus-box-shadow);
 }
-.btn:disabled, .btn.disabled, fieldset:disabled .btn {
+.btn:disabled, .table .table-button:disabled, .btn.disabled, .table .disabled.table-button, fieldset:disabled .btn, fieldset:disabled .table .table-button, .table fieldset:disabled .table-button {
   color: var(--bs-btn-disabled-color);
   pointer-events: none;
   background-color: var(--bs-btn-disabled-bg);
@@ -2968,7 +2970,7 @@ textarea.form-control-lg {
   opacity: var(--bs-btn-disabled-opacity);
 }
 
-.btn-primary {
+.btn-primary, .table .table-button {
   --bs-btn-color: #fff;
   --bs-btn-bg: #0d6efd;
   --bs-btn-border-color: #0d6efd;
@@ -3262,14 +3264,14 @@ textarea.form-control-lg {
   color: var(--bs-btn-hover-color);
 }
 
-.btn-lg, .btn-group-lg > .btn {
+.btn-lg, .btn-group-lg > .btn, .table .btn-group-lg > .table-button {
   --bs-btn-padding-y: 0.5rem;
   --bs-btn-padding-x: 1rem;
   --bs-btn-font-size: 1.25rem;
   --bs-btn-border-radius: var(--bs-border-radius-lg);
 }
 
-.btn-sm, .btn-group-sm > .btn {
+.btn-sm, .btn-group-sm > .btn, .table .btn-group-sm > .table-button {
   --bs-btn-padding-y: 0.25rem;
   --bs-btn-padding-x: 0.5rem;
   --bs-btn-font-size: 0.875rem;
@@ -3636,23 +3638,35 @@ textarea.form-control-lg {
   display: inline-flex;
   vertical-align: middle;
 }
-.btn-group > .btn,
-.btn-group-vertical > .btn {
+.btn-group > .btn, .table .btn-group > .table-button,
+.btn-group-vertical > .btn,
+.table .btn-group-vertical > .table-button {
   position: relative;
   flex: 1 1 auto;
 }
-.btn-group > .btn-check:checked + .btn,
+.btn-group > .btn-check:checked + .btn, .table .btn-group > .btn-check:checked + .table-button,
 .btn-group > .btn-check:focus + .btn,
+.table .btn-group > .btn-check:focus + .table-button,
 .btn-group > .btn:hover,
+.table .btn-group > .table-button:hover,
 .btn-group > .btn:focus,
+.table .btn-group > .table-button:focus,
 .btn-group > .btn:active,
+.table .btn-group > .table-button:active,
 .btn-group > .btn.active,
+.table .btn-group > .active.table-button,
 .btn-group-vertical > .btn-check:checked + .btn,
+.table .btn-group-vertical > .btn-check:checked + .table-button,
 .btn-group-vertical > .btn-check:focus + .btn,
+.table .btn-group-vertical > .btn-check:focus + .table-button,
 .btn-group-vertical > .btn:hover,
+.table .btn-group-vertical > .table-button:hover,
 .btn-group-vertical > .btn:focus,
+.table .btn-group-vertical > .table-button:focus,
 .btn-group-vertical > .btn:active,
-.btn-group-vertical > .btn.active {
+.table .btn-group-vertical > .table-button:active,
+.btn-group-vertical > .btn.active,
+.table .btn-group-vertical > .active.table-button {
   z-index: 1;
 }
 
@@ -3668,19 +3682,23 @@ textarea.form-control-lg {
 .btn-group {
   border-radius: var(--bs-border-radius);
 }
-.btn-group > :not(.btn-check:first-child) + .btn,
+.btn-group > :not(.btn-check:first-child) + .btn, .table .btn-group > :not(.btn-check:first-child) + .table-button,
 .btn-group > .btn-group:not(:first-child) {
   margin-left: calc(-1 * var(--bs-border-width));
 }
-.btn-group > .btn:not(:last-child):not(.dropdown-toggle),
+.btn-group > .btn:not(:last-child):not(.dropdown-toggle), .table .btn-group > .table-button:not(:last-child):not(.dropdown-toggle),
 .btn-group > .btn.dropdown-toggle-split:first-child,
-.btn-group > .btn-group:not(:last-child) > .btn {
+.table .btn-group > .dropdown-toggle-split.table-button:first-child,
+.btn-group > .btn-group:not(:last-child) > .btn,
+.table .btn-group > .btn-group:not(:last-child) > .table-button {
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
 }
-.btn-group > .btn:nth-child(n+3),
+.btn-group > .btn:nth-child(n+3), .table .btn-group > .table-button:nth-child(n+3),
 .btn-group > :not(.btn-check) + .btn,
-.btn-group > .btn-group:not(:first-child) > .btn {
+.table .btn-group > :not(.btn-check) + .table-button,
+.btn-group > .btn-group:not(:first-child) > .btn,
+.table .btn-group > .btn-group:not(:first-child) > .table-button {
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
 }
@@ -3696,12 +3714,12 @@ textarea.form-control-lg {
   margin-right: 0;
 }
 
-.btn-sm + .dropdown-toggle-split, .btn-group-sm > .btn + .dropdown-toggle-split {
+.btn-sm + .dropdown-toggle-split, .btn-group-sm > .btn + .dropdown-toggle-split, .table .btn-group-sm > .table-button + .dropdown-toggle-split {
   padding-right: 0.375rem;
   padding-left: 0.375rem;
 }
 
-.btn-lg + .dropdown-toggle-split, .btn-group-lg > .btn + .dropdown-toggle-split {
+.btn-lg + .dropdown-toggle-split, .btn-group-lg > .btn + .dropdown-toggle-split, .table .btn-group-lg > .table-button + .dropdown-toggle-split {
   padding-right: 0.75rem;
   padding-left: 0.75rem;
 }
@@ -3711,22 +3729,25 @@ textarea.form-control-lg {
   align-items: flex-start;
   justify-content: center;
 }
-.btn-group-vertical > .btn,
+.btn-group-vertical > .btn, .table .btn-group-vertical > .table-button,
 .btn-group-vertical > .btn-group {
   width: 100%;
 }
-.btn-group-vertical > .btn:not(:first-child),
+.btn-group-vertical > .btn:not(:first-child), .table .btn-group-vertical > .table-button:not(:first-child),
 .btn-group-vertical > .btn-group:not(:first-child) {
   margin-top: calc(-1 * var(--bs-border-width));
 }
-.btn-group-vertical > .btn:not(:last-child):not(.dropdown-toggle),
-.btn-group-vertical > .btn-group:not(:last-child) > .btn {
+.btn-group-vertical > .btn:not(:last-child):not(.dropdown-toggle), .table .btn-group-vertical > .table-button:not(:last-child):not(.dropdown-toggle),
+.btn-group-vertical > .btn-group:not(:last-child) > .btn,
+.table .btn-group-vertical > .btn-group:not(:last-child) > .table-button {
   border-bottom-right-radius: 0;
   border-bottom-left-radius: 0;
 }
-.btn-group-vertical > .btn:nth-child(n+3),
+.btn-group-vertical > .btn:nth-child(n+3), .table .btn-group-vertical > .table-button:nth-child(n+3),
 .btn-group-vertical > :not(.btn-check) + .btn,
-.btn-group-vertical > .btn-group:not(:first-child) > .btn {
+.table .btn-group-vertical > :not(.btn-check) + .table-button,
+.btn-group-vertical > .btn-group:not(:first-child) > .btn,
+.table .btn-group-vertical > .btn-group:not(:first-child) > .table-button {
   border-top-left-radius: 0;
   border-top-right-radius: 0;
 }
@@ -4765,7 +4786,7 @@ textarea.form-control-lg {
   display: none;
 }
 
-.btn .badge {
+.btn .badge, .table .table-button .badge {
   position: relative;
   top: -1px;
 }
@@ -6714,7 +6735,7 @@ textarea.form-control-lg {
   background-color: currentcolor;
   opacity: 0.5;
 }
-.placeholder.btn::before {
+.placeholder.btn::before, .table .placeholder.table-button::before {
   display: inline-block;
   content: "";
 }
@@ -11867,7 +11888,7 @@ body {
   padding: 2rem;
 }
 
-.table {
+.table, .table table, .table table table {
   width: 95%;
   max-width: 1200px;
   margin: 0 auto;
@@ -11881,6 +11902,89 @@ body {
   justify-content: space-between;
   align-items: center;
   margin-bottom: 1.5rem;
+}
+
+body {
+  font-family: "Inter", Arial, sans-serif;
+  background-color: #f3f4f6;
+  color: #111827;
+  margin: 0;
+}
+
+.table, .table table, .table table table {
+  width: 95%;
+  max-width: 1200px;
+  margin: 0 auto;
+  background-color: #fff;
+  border-radius: 0.375rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+.table .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+.table .form-control {
+  width: 250px;
+  border-radius: 6px;
+  font-size: 0.9rem;
+}
+.table .table-button {
+  font-weight: 600;
+  border-radius: 6px;
+}
+.table table, .table table table, .table table table table {
+  width: 100%;
+  border-radius: 0.375rem;
+  border-color: #e5e7eb;
+  overflow: hidden;
+}
+.table table thead, .table table table thead, .table table table table thead {
+  font-weight: 700;
+  text-transform: uppercase;
+  border-bottom: 2px solid #e5e7eb;
+}
+.table table thead th, .table table table thead th, .table table table table thead th {
+  padding: 0.9rem 1rem;
+  color: #374151;
+  font-size: 0.85rem;
+  letter-spacing: 0.05em;
+}
+.table table tbody td, .table table table tbody td, .table table table table tbody td {
+  padding: 0.75rem 1rem;
+  vertical-align: middle;
+  font-size: 0.9rem;
+}
+.table table tbody tr:hover {
+  background-color: #f3f4f6;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.status {
+  display: inline-block;
+  font-weight: 600;
+  font-size: 0.85rem;
+  padding: 0.35rem 0.75rem;
+  border-radius: 6px;
+  text-align: center;
+  min-width: 80px;
+}
+.status--Open {
+  background-color: rgba(40, 167, 69, 0.1);
+  color: #28a745;
+}
+.status--Paid {
+  background-color: rgba(0, 123, 255, 0.1);
+  color: #007bff;
+}
+.status--Inactive {
+  background-color: rgba(108, 117, 125, 0.1);
+  color: #6c757d;
+}
+.status--Due {
+  background-color: rgba(189, 151, 37, 0.15);
+  color: #856404;
 }
 
 /*# sourceMappingURL=style.css.map */

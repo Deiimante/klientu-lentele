@@ -1,5 +1,97 @@
 
 @import "bootstrap/bootstrap";
-
 @import "components/_table";
 
+
+body {
+ font-family: "Inter", Arial, sans-serif;
+ background-color: #f3f4f6;
+ color: #111827;
+ margin: 0;
+}
+
+.table {
+ width: 95%;
+ max-width: 1200px;
+ margin: 0 auto;
+ background-color: #fff;
+ border-radius: $border-radius;
+ box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+ .container {
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   margin-bottom: 1.5rem;
+ }
+ .form-control {
+   @extend .form-control;
+   width: 250px;
+   border-radius: 6px;
+   font-size: 0.9rem;
+ }
+ .table-button {
+   @extend .btn;
+   @extend .btn-primary;
+   font-weight: 600;
+   border-radius: 6px;
+ }
+ table {
+   @extend .table;
+   @extend .table-bordered;
+   @extend .table-hover;
+   width: 100%;
+   border-radius: $border-radius;
+   border-color: #e5e7eb;
+   overflow: hidden;
+   thead {
+     font-weight: 700;
+     text-transform: uppercase;
+     border-bottom: 2px solid #e5e7eb;
+     th {
+       padding: 0.9rem 1rem;
+       color: #374151;
+       font-size: 0.85rem;
+       letter-spacing: 0.05em;
+     }
+   }
+   tbody td {
+     padding: 0.75rem 1rem;
+     vertical-align: middle;
+     font-size: 0.9rem;
+   }
+   tbody tr:hover {
+     background-color: #f3f4f6;
+     transition: background-color 0.2s ease-in-out;
+   }
+ }
+}
+
+.status {
+ display: inline-block;
+ font-weight: 600;
+ font-size: 0.85rem;
+ padding: 0.35rem 0.75rem;
+ border-radius: 6px;
+ text-align: center;
+ min-width: 80px;
+
+&--Open {
+   background-color: rgba(40, 167, 69, 0.1); 
+   color: #28a745;
+ }
+
+&--Paid {
+   background-color: rgba(0, 123, 255, 0.1); 
+   color: #007bff;
+ }
+
+&--Inactive {
+   background-color: rgba(108, 117, 125, 0.1);
+   color: #6c757d;
+ }
+
+&--Due {
+   background-color: rgba(189, 151, 37, 0.15); 
+   color: #856404;
+ }
+}
